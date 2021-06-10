@@ -97,6 +97,10 @@ ex ()
 }
 
 
+########### Setting Locale ###########
+export LC_CTYPE="en_US.utf8"
+
+
 ########### Key Bindings ###########
 bindkey '^H' backward-kill-word
 bindkey '^[[1;5C' forward-word
