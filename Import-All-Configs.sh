@@ -12,8 +12,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-mkdir .config/alacritty
-mkdir .config/nvim
+mkdir -p .config/alacritty
+mkdir -p .config/nvim
 mkdir .doom.d
 mv dotfiles/.config/alacritty/alacritty.yml .config/alacritty
 mv dotfiles/.config/nvim/init.vim .config/nvim
