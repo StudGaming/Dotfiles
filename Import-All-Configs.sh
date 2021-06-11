@@ -1,8 +1,5 @@
-########### Moving to the Home Directory ###########
-cd
-
-
 ########### Taking Backups of Files if They Exist ###########
+cd
 mkdir backups
 mv .config/alacritty backups
 mv .config/qtile backups
@@ -15,7 +12,8 @@ mv .vimrc backups
 mv .zshrc backups
 
 
-########### CLoning the Repository ###########
+########### CLoning the Directory ###########
+cd
 git clone --branch=Beta https://github.com/StudGaming/dotfiles
 
 
@@ -38,6 +36,7 @@ mkdir -p .doom.d
 
 
 ########### Moving Files ###########
+cd
 mv dotfiles/.config/alacritty/alacritty.yml .config/alacritty
 mv dotfiles/.config/qtile/* .config/qtile
 mv dotfiles/.config/rofi/* .config/rofi
@@ -45,3 +44,8 @@ mv dotfiles/.config/nvim/init.vim .config/nvim
 mv dotfiles/.config/starship.toml .config/
 mv dotfiles/.zshrc .
 mv dotfiles/.vimrc .
+
+
+########### Removing the Cloned Directory ###########
+cd
+rm -rf dotfiles
