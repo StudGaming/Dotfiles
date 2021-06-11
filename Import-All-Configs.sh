@@ -1,3 +1,7 @@
+########### Installing Packages ###########
+paru -S alacritty qtile vim neovim rofi zsh shell-color-scripts starship emacs
+
+
 ########### Taking Backups of Files if They Exist ###########
 cd
 mkdir backups
