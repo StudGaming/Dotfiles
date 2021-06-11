@@ -14,7 +14,8 @@ super       = "mod4"
 alt         = "mod1"
 ctrl        = "control"
 home        = os.path.expanduser('~')
-
+run         = home + '/.config/rofi/Launcher/launcher.sh'
+logout      = "arcolinux-logout"
 
 
 keys = [
@@ -34,7 +35,7 @@ keys = [
     Key([super], "t", lazy.spawn('termite')),
     Key([super], "v", lazy.spawn('pavucontrol')),
     Key([super], "w", lazy.spawn('vivaldi-stable')),
-    Key([super], "x", lazy.spawn('arcolinux-logout')),
+    Key([super], "x", lazy.spawn(logout)),
     Key([super], "Escape", lazy.spawn('xkill')),
     Key([super], "Return", lazy.spawn('alacritty')),
     Key([super], "KP_Enter", lazy.spawn('termite')),
@@ -54,7 +55,7 @@ keys = [
 # SUPER + SHIFT KEYS
 
     Key([super, "shift"], "Return", lazy.spawn('thunar')),
-    Key([super, "shift"], "d", lazy.spawn("dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")),
+    Key([super, "shift"], "p", lazy.spawn(run)),
     Key([super, "shift"], "q", lazy.window.kill()),
     Key([super, "shift"], "r", lazy.restart()),
     Key([super, ctrl], "r", lazy.restart()),
@@ -506,37 +507,6 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []
-
-# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
-# BEGIN
-
-@hook.subscribe.client_new
-def assign_app_group(client):
-
-
-    d = {}
-    d["Web"] = ["brave-browser"]
-    d["Dev"] = ["emacs"]
-    d["Sys"] = ["Alacritty", "termite"]
-    d["Chat"] = ["Gimp", "gimp"]
-    d["Vbox"] = ["Meld", "meld", "org.gnome.meld" "org.gnome.Meld"]
-    d["Music"] = ["Vlc","vlc", "Mpv", "mpv"]
-    d["Video"] = ["VirtualBox Manager", "VirtualBox Machine", "Vmplayer",
-              "virtualbox manager", "virtualbox machine", "vmplayer"]
-    d["Misc"] = ["Thunar", "Nemo", "Caja", "Nautilus", "org.gnome.Nautilus", "Pcmanfm", "Pcmanfm-qt",
-              "thunar", "nemo", "caja", "nautilus", "org.gnome.nautilus", "pcmanfm", "pcmanfm-qt"]
-#     ##########################################################
-    wm_class = client.window.get_wm_class()[0]
-
-    for i in range(len(d)):
-        if wm_class in list(d.values())[i]:
-            group = list(d.keys())[i]
-            client.togroup(group)
-
-# END
-# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
-
-
 
 main = None
 
