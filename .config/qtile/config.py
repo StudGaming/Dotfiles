@@ -10,220 +10,97 @@ from libqtile.widget import Spacer
 
 
 ########### Key Shortcuts ###########
-super       = "mod4"
+#### Mod Keys ####
+super       = "mod4"                                             # Super is the Windows Key
 alt         = "mod1"
 ctrl        = "control"
+
+#### Special Characters ####
 home        = os.path.expanduser('~')
-run         = home + '/.config/rofi/Launcher/launcher.sh'
-logout      = "arcolinux-logout"
+
+#### Applications ####
+browser     = "brave"                                            # Browser
+code        = "emacs"                                            # Text Editing
+files       = "thunar"                                           # File Manager
+logout      = "arcolinux-logout"                                 # Logout Tool
+run         = home + '/.config/rofi/Launcher/launcher.sh'        # Run Launcher
+taskmanager = "alacritty -e'htop'"                               # Task Manager
+terminal    = "alacritty"                                        # Terminal
 
 
+########### Key Bindings ###########
 keys = [
+#### Layout Modifications ####
+## Switching Between Open Applications ##
+# Switch Up
+Key([super], "Up", lazy.layout.up()),
+# Switch Down
+Key([super], "Down", lazy.layout.down()),
+# Switch Left
+Key([super], "Left", lazy.layout.left()),
+# Switch Right
+Key([super], "Right", lazy.layout.right()),
+# Switch Between Apps
+Key([super], "k", lazy.layout.next()),
+# Switch Between Apps
+Key([super], "j", lazy.layout.next()),
+# Switch Between Apps
+Key([alt], "Tab", lazy.layout.next()),
+## Changing the Size of Open Applications ##
+# Increase Size
+Key([super], "l",
+    lazy.layout.grow_right(),
+    lazy.layout.grow(),
+    lazy.layout.increase_ratio(),
+    lazy.layout.delete(),
+    ),
+# Decrease Size
+Key([super], "h",
+    lazy.layout.grow_left(),
+    lazy.layout.shrink(),
+    lazy.layout.decrease_ratio(),
+    lazy.layout.add(),
+    ),
+## Change the Layout ##
+Key([super], "Tab", lazy.next_layout()),
+## Toggle Fullscreen ##
+Key([super, "shift"], "f", lazy.window.toggle_fullscreen()),
+## Toggle Floating ##
+Key([super, "shift"], "t", lazy.window.toggle_floating()),
 
-# FUNCTION KEYS
+#### Qtile ####
+## Exiting and Restarting ##
+# Retart Qtile
+Key([super, "shift"], "r", lazy.restart()),
+# Logout of Qtile
+Key([super, "shift"], "q", lazy.shutdown()),
+# Closing Applications
+Key([super, "shift"], "c", lazy.window.kill()),
 
-    Key([], "F12", lazy.spawn('xfce4-terminal --drop-down')),
-
-# SUPER + FUNCTION KEYS
-
-    Key([super], "e", lazy.spawn('atom')),
-    Key([super], "c", lazy.spawn('conky-toggle')),
-    Key([super], "f", lazy.window.toggle_fullscreen()),
-    Key([super], "m", lazy.spawn('pragha')),
-    Key([super], "q", lazy.window.kill()),
-    Key([super], "r", lazy.spawn('rofi-theme-selector')),
-    Key([super], "t", lazy.spawn('termite')),
-    Key([super], "v", lazy.spawn('pavucontrol')),
-    Key([super], "w", lazy.spawn('vivaldi-stable')),
-    Key([super], "x", lazy.spawn(logout)),
-    Key([super], "Escape", lazy.spawn('xkill')),
-    Key([super], "Return", lazy.spawn('alacritty')),
-    Key([super], "KP_Enter", lazy.spawn('termite')),
-    Key([super], "F1", lazy.spawn('vivaldi-stable')),
-    Key([super], "F2", lazy.spawn('atom')),
-    Key([super], "F3", lazy.spawn('inkscape')),
-    Key([super], "F4", lazy.spawn('gimp')),
-    Key([super], "F5", lazy.spawn('meld')),
-    Key([super], "F6", lazy.spawn('vlc --video-on-top')),
-    Key([super], "F7", lazy.spawn('virtualbox')),
-    Key([super], "F8", lazy.spawn('thunar')),
-    Key([super], "F9", lazy.spawn('evolution')),
-    Key([super], "F10", lazy.spawn("spotify")),
-    Key([super], "F11", lazy.spawn('rofi -show run -fullscreen')),
-    Key([super], "F12", lazy.spawn('rofi -show run')),
-
-# SUPER + SHIFT KEYS
-
-    Key([super, "shift"], "Return", lazy.spawn('thunar')),
-    Key([super, "shift"], "p", lazy.spawn(run)),
-    Key([super, "shift"], "q", lazy.window.kill()),
-    Key([super, "shift"], "r", lazy.restart()),
-    Key([super, ctrl], "r", lazy.restart()),
-    # Key([super, "shift"], "x", lazy.shutdown()),
-
-# ctrl + ALT KEYS
-
-    Key([alt, ctrl], "Next", lazy.spawn('conky-rotate -n')),
-    Key([alt, ctrl], "Prior", lazy.spawn('conky-rotate -p')),
-    Key([alt, ctrl], "a", lazy.spawn('xfce4-appfinder')),
-    Key([alt, ctrl], "b", lazy.spawn('thunar')),
-    Key([alt, ctrl], "c", lazy.spawn('catfish')),
-    Key([alt, ctrl], "e", lazy.spawn('arcolinux-tweak-tool')),
-    Key([alt, ctrl], "f", lazy.spawn('firefox')),
-    Key([alt, ctrl], "g", lazy.spawn('chromium -no-default-browser-check')),
-    Key([alt, ctrl], "i", lazy.spawn('nitrogen')),
-    Key([alt, ctrl], "k", lazy.spawn('slimlock')),
-    Key([alt, ctrl], "m", lazy.spawn('xfce4-settings-manager')),
-    Key([alt, ctrl], "o", lazy.spawn(home + '/.config/qtile/scripts/picom-toggle.sh')),
-    Key([alt, ctrl], "p", lazy.spawn('pamac-manager')),
-    Key([alt, ctrl], "r", lazy.spawn('rofi-theme-selector')),
-    Key([alt, ctrl], "s", lazy.spawn('spotify')),
-    Key([alt, ctrl], "t", lazy.spawn('termite')),
-    Key([alt, ctrl], "u", lazy.spawn('pavucontrol')),
-    Key([alt, ctrl], "v", lazy.spawn('vivaldi-stable')),
-    Key([alt, ctrl], "w", lazy.spawn('arcolinux-welcome-app')),
-    Key([alt, ctrl], "Return", lazy.spawn('termite')),
-
-# ALT + ... KEYS
-
-    Key([alt], "k", lazy.spawn('slimlock')),
-    Key([alt], "f", lazy.spawn('variety -f')),
-    Key([alt], "h", lazy.spawn('urxvt -e htop')),
-    Key([alt], "n", lazy.spawn('variety -n')),
-    Key([alt], "p", lazy.spawn('variety -p')),
-    Key([alt], "t", lazy.spawn('variety -t')),
-    Key([alt], "Up", lazy.spawn('variety --pause')),
-    Key([alt], "Down", lazy.spawn('variety --resume')),
-    Key([alt], "Left", lazy.spawn('variety -p')),
-    Key([alt], "Right", lazy.spawn('variety -n')),
-    Key([alt], "F2", lazy.spawn('gmrun')),
-    Key([alt], "F3", lazy.spawn('xfce4-appfinder')),
-
-# VARIETY KEYS WITH PYWAL
-
-    Key([alt, "shift"], "f", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -f')),
-    Key([alt, "shift"], "p", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -p')),
-    Key([alt, "shift"], "n", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -n')),
-    Key([alt, "shift"], "u", lazy.spawn(home + '/.config/qtile/scripts/set-pywal.sh -u')),
-
-# ctrl + SHIFT KEYS
-
-    Key([ctrl, "shift"], "Escape", lazy.spawn('xfce4-taskmanager')),
-
-# SCREENSHOTS
-
-    Key([], "Print", lazy.spawn("scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
-    Key([ctrl], "Print", lazy.spawn('xfce4-screenshooter')),
-    Key([ctrl, "shift"], "Print", lazy.spawn('gnome-screenshot -i')),
-
-# MULTIMEDIA KEYS
-
-# INCREASE/DECREASE BRIGHTNESS
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 5")),
-
-# INCREASE/DECREASE/MUTE VOLUME
-    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 5%+")),
-
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
-    Key([], "XF86AudioStop", lazy.spawn("playerctl stop")),
-
-#    Key([], "XF86AudioPlay", lazy.spawn("mpc toggle")),
-#    Key([], "XF86AudioNext", lazy.spawn("mpc next")),
-#    Key([], "XF86AudioPrev", lazy.spawn("mpc prev")),
-#    Key([], "XF86AudioStop", lazy.spawn("mpc stop")),
-
-# QTILE LAYOUT KEYS
-    Key([super], "n", lazy.layout.normalize()),
-    Key([super], "space", lazy.next_layout()),
-
-# CHANGE FOCUS
-    Key([super], "Up", lazy.layout.up()),
-    Key([super], "Down", lazy.layout.down()),
-    Key([super], "Left", lazy.layout.left()),
-    Key([super], "Right", lazy.layout.right()),
-    Key([super], "k", lazy.layout.up()),
-    Key([super], "j", lazy.layout.down()),
-    Key([super], "h", lazy.layout.left()),
-    Key([super], "l", lazy.layout.right()),
+#### Applications ####
+# Terminal
+Key([super], "Return", lazy.spawn(terminal)),
+Key([super], "KP_Enter", lazy.spawn(terminal)),
+# Browser
+Key([alt, "control"], "b", lazy.spawn(browser)),
+# Text Editing
+Key([alt, "control"], "c", lazy.spawn(code)),
+# File Manager
+Key([super], "e", lazy.spawn(files)),
+# Logout Tool
+Key([super], "x", lazy.spawn(logout)),
+# X Kill
+Key([super], "Escape", lazy.spawn('xkill')),
+# Run Launcher
+Key([super, "shift"], "Return", lazy.spawn(run)),
+# Task Manager
+Key([ctrl, "shift"], "Escape", lazy.spawn(taskmanager)),
+# ScreenShots
+Key([super], "Print", lazy.spawn("scrot 'Screenshot-%Y-%m-%d-%s.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'"))]
 
 
-# RESIZE UP, DOWN, LEFT, RIGHT
-    Key([super, ctrl], "l",
-        lazy.layout.grow_right(),
-        lazy.layout.grow(),
-        lazy.layout.increase_ratio(),
-        lazy.layout.delete(),
-        ),
-    Key([super, ctrl], "Right",
-        lazy.layout.grow_right(),
-        lazy.layout.grow(),
-        lazy.layout.increase_ratio(),
-        lazy.layout.delete(),
-        ),
-    Key([super, ctrl], "h",
-        lazy.layout.grow_left(),
-        lazy.layout.shrink(),
-        lazy.layout.decrease_ratio(),
-        lazy.layout.add(),
-        ),
-    Key([super, ctrl], "Left",
-        lazy.layout.grow_left(),
-        lazy.layout.shrink(),
-        lazy.layout.decrease_ratio(),
-        lazy.layout.add(),
-        ),
-    Key([super, ctrl], "k",
-        lazy.layout.grow_up(),
-        lazy.layout.grow(),
-        lazy.layout.decrease_nmaster(),
-        ),
-    Key([super, ctrl], "Up",
-        lazy.layout.grow_up(),
-        lazy.layout.grow(),
-        lazy.layout.decrease_nmaster(),
-        ),
-    Key([super, ctrl], "j",
-        lazy.layout.grow_down(),
-        lazy.layout.shrink(),
-        lazy.layout.increase_nmaster(),
-        ),
-    Key([super, ctrl], "Down",
-        lazy.layout.grow_down(),
-        lazy.layout.shrink(),
-        lazy.layout.increase_nmaster(),
-        ),
-
-
-# FLIP LAYOUT FOR MONADTALL/MONADWIDE
-    Key([super, "shift"], "f", lazy.layout.flip()),
-
-# FLIP LAYOUT FOR BSP
-    Key([super, alt], "k", lazy.layout.flip_up()),
-    Key([super, alt], "j", lazy.layout.flip_down()),
-    Key([super, alt], "l", lazy.layout.flip_right()),
-    Key([super, alt], "h", lazy.layout.flip_left()),
-
-# MOVE WINDOWS UP OR DOWN BSP LAYOUT
-    Key([super, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([super, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([super, "shift"], "h", lazy.layout.shuffle_left()),
-    Key([super, "shift"], "l", lazy.layout.shuffle_right()),
-
-# MOVE WINDOWS UP OR DOWN MONADTALL/MONADWIDE LAYOUT
-    Key([super, "shift"], "Up", lazy.layout.shuffle_up()),
-    Key([super, "shift"], "Down", lazy.layout.shuffle_down()),
-    Key([super, "shift"], "Left", lazy.layout.swap_left()),
-    Key([super, "shift"], "Right", lazy.layout.swap_right()),
-
-# TOGGLE FLOATING LAYOUT
-    Key([super, "shift"], "space", lazy.window.toggle_floating()),]
-
-
+########### WorkSpaces ###########
+#### WorkSpaces ####
 group_names = [("Web", {'layout': 'max'}),
                ("Dev", {'layout': 'max'}),
                ("Sys", {'layout': 'monadtall'}),
@@ -232,32 +109,58 @@ group_names = [("Web", {'layout': 'max'}),
                ("Muisc", {'layout': 'max'}),
                ("Video", {'layout': 'max'}),
                ("Misc", {'layout': 'monadtall'})]
-
+## Variable ##
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
-
+#### To switch WorkSpaces ####
 for i, (name, kwargs) in enumerate(group_names, 1):
-    keys.append(Key([super], str(i), lazy.group[name].toscreen()))        # Switch to another group
-    keys.append(Key([super, "shift"], str(i), lazy.window.togroup(name))) # Send current window to another group
-
-def init_layout_theme():
-    return {"margin":5,
-            "border_width":2,
-            "border_focus": "#5e81ac",
-            "border_normal": "#4c566a"
-            }
-
-layout_theme = init_layout_theme()
+    keys.append(Key([super], str(i), lazy.group[name].toscreen()))       
+    keys.append(Key([super, "shift"], str(i), lazy.window.togroup(name)))
 
 
+########### layouts ###########
 layouts = [
     layout.MonadTall(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
-    layout.MonadWide(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
-    layout.Matrix(**layout_theme),
-    layout.Bsp(**layout_theme),
-    layout.Floating(**layout_theme),
-    layout.RatioTile(**layout_theme),
-    layout.Max(**layout_theme)
-]
+    layout.Floating(border_focus="#5e81ac", border_normal="#4c566a"),
+    layout.Max()]
+
+
+########### Move Apps Automatically To Workspaces ###########
+@hook.subscribe.client_new
+def assign_app_group(client):
+     d = {}
+     #####################################################################################
+     ### Use xprop fo find  the value of WM_CLASS(STRING) -> First field is sufficient ###
+     #####################################################################################
+     d[group_names[0]] = ["Navigator", "Firefox", "Vivaldi-stable", "Vivaldi-snapshot", "Chromium", "Google-chrome", "Brave", "Brave-browser",
+               "navigator", "firefox", "vivaldi-stable", "vivaldi-snapshot", "chromium", "google-chrome", "brave", "brave-browser", ]
+     d[group_names[1]] = [ "Atom", "Subl3", "Geany", "Brackets", "Code-oss", "Code", "TelegramDesktop", "Discord",
+                "atom", "subl3", "geany", "brackets", "code-oss", "code", "telegramDesktop", "discord", ]
+     d[group_names[2]] = ["Inkscape", "Nomacs", "Ristretto", "Nitrogen", "Feh",
+               "inkscape", "nomacs", "ristretto", "nitrogen", "feh", ]
+     d[group_names[3]] = ["Gimp", "gimp" ]
+     d[group_names[4]] = ["Meld", "meld", "org.gnome.meld" "org.gnome.Meld" ]
+     d[group_names[5]] = ["Vlc","vlc", "Mpv", "mpv" ]
+     d[group_names[6]] = ["VirtualBox Manager", "VirtualBox Machine", "Vmplayer",
+               "virtualbox manager", "virtualbox machine", "vmplayer", ]
+     d[group_names[7]] = ["Thunar", "Nemo", "Caja", "Nautilus", "org.gnome.Nautilus", "Pcmanfm", "Pcmanfm-qt",
+               "thunar", "nemo", "caja", "nautilus", "org.gnome.nautilus", "pcmanfm", "pcmanfm-qt", ]
+     d[group_names[8]] = ["Evolution", "Geary", "Mail", "Thunderbird",
+               "evolution", "geary", "mail", "thunderbird" ]
+     d[group_names[9]] = ["Spotify", "Pragha", "Clementine", "Deadbeef", "Audacious",
+               "spotify", "pragha", "clementine", "deadbeef", "audacious" ]
+     ######################################################################################
+
+wm_class = client.window.get_wm_class()[0]
+
+for i in range(len(d)):
+    if wm_class in list(d.values())[i]:
+        group = list(d.keys())[i]
+        client.togroup(group)
+        client.group.cmd_toscreen(toggle=False)
+
+# END
+# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
+
 
 # COLORS FOR THE BAR
 
