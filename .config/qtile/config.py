@@ -106,7 +106,7 @@ group_names = [("Web", {'layout': 'max'}),
                ("Sys", {'layout': 'monadtall'}),
                ("Chat", {'layout': 'max'}),
                ("Vbox", {'layout': 'max'}),
-               ("Muisc", {'layout': 'max'}),
+               ("Music", {'layout': 'max'}),
                ("Video", {'layout': 'max'}),
                ("Misc", {'layout': 'monadtall'})]
 ## Variable ##
