@@ -42,7 +42,7 @@ mv dotfiles/.config/qtile/* .config/qtile
 mv dotfiles/.config/rofi/* .config/rofi
 mv dotfiles/.config/nvim/init.vim .config/nvim
 mv dotfiles/.config/starship.toml .config/
-mv dotifles/.doom.d/* .doom.d
+mv dotifles/.doom.d/* .doom.d/
 mv dotfiles/.zshrc .
 mv dotfiles/.vimrc .
 
