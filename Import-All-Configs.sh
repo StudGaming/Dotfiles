@@ -1,15 +1,15 @@
 ########### Taking Backups of Files if They Exist ###########
 cd
 mkdir backups
-mv .config/alacritty backups
-mv .config/qtile backups
-mv .config/nvim backups
-mv .config/rofi backups
-mv .config/starship.toml backups
-mv .doom.d backups
-mv .vim backups
-mv .vimrc backups
-mv .zshrc backups
+mv -rf .config/alacritty backups
+mv -rf .config/qtile backups
+mv -rf .config/nvim backups
+mv -rf .config/rofi backups
+mv -rf .config/starship.toml backups
+mv -rf .doom.d backups
+mv -rf .vim backups
+mv -rf .vimrc backups
+mv -rf .zshrc backups
 
 
 ########### CLoning the Directory ###########
