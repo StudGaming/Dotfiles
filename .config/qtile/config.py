@@ -3,7 +3,7 @@ import os
 import re
 import socket
 import subprocess
-from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule
+from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
@@ -26,6 +26,8 @@ logout      = "arcolinux-logout"                                 # Logout Tool
 run         = home + '/.config/rofi/Launcher/launcher.sh'        # Run Launcher
 taskmanager = "alacritty -e'htop'"                               # Task Manager
 terminal    = "alacritty"                                        # Terminal
+chat        = "discord"                                          # Chat Application
+virtual     = ""
 
 
 ########### Key Bindings ###########
@@ -89,6 +91,8 @@ Key([alt, "control"], "c", lazy.spawn(code)),
 Key([super], "e", lazy.spawn(files)),
 # Logout Tool
 Key([super], "x", lazy.spawn(logout)),
+# Chat Application
+Key([alt, "control"], "d", lazy.spawn(chat)),
 # X Kill
 Key([super], "Escape", lazy.spawn('xkill')),
 # Run Launcher
@@ -101,13 +105,13 @@ Key([super], "Print", lazy.spawn("scrot 'Screenshot-%Y-%m-%d-%s.jpg' -e 'mv $f $
 
 ########### WorkSpaces ###########
 #### WorkSpaces ####
-group_names = [("Web", {'layout': 'max'}),
-               ("Dev", {'layout': 'max'}),
+group_names = [("Web", {'layout': 'max', 'matches':[Match(wm_class=["Brave-browser", "firefox"])]}),
+               ("Dev", {'layout': 'max', 'matches':[Match(wm_class=["Emacs"])]}),
                ("Sys", {'layout': 'monadtall'}),
-               ("Chat", {'layout': 'max'}),
-               ("Vbox", {'layout': 'max'}),
+               ("Chat", {'layout': 'max', 'matches':[Match(wm_class=["discord"])]}),
+               ("Vbox", {'layout': 'max', 'matches':[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]}),
                ("Music", {'layout': 'max'}),
-               ("Video", {'layout': 'max'}),
+               ("Video", {'layout': 'max', 'matches':[Match(wm_class=["kdenlive"])]}),
                ("Misc", {'layout': 'monadtall'})]
 ## Variable ##
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
