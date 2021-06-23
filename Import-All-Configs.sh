@@ -16,7 +16,7 @@ mv -rf .themes/ backups
 
 ########### CLoning the Directory ###########
 cd
-git clone --branch=Beta https://github.com/StudGaming/dotfiles
+git clone https://github.com/StudGaming/dotfiles
 
 
 ########### Getting Vim Plugged for Both NeoVim and Vim ###########
