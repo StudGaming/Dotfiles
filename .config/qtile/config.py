@@ -104,7 +104,7 @@ Key([ctrl, "shift"], "Escape", lazy.spawn(taskmanager)),
 # Virtualization Software
 Key([alt, "control"], "v", lazy.spawn(virtual)),
 # ScreenShots
-    Key([super], "Print", lazy.spawn("scrot 'Screenshot-%Y-%m-%d-%s.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
+Key([super], "Print", lazy.spawn("scrot 'Screenshot-%Y-%m-%d-%s.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
 # Config
 Key([alt, "control"], "h", lazy.spawn(config))]
 
