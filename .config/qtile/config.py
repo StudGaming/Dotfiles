@@ -106,6 +106,15 @@ Key([alt, "control"], "v", lazy.spawn(virtual)),
 Key([super], "Print", lazy.spawn("scrot 'Screenshot-%Y-%m-%d-%s.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'"))]
 
 
+########### Mouse Bindings ###########
+mouse = [
+    Drag([super], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([super], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size())
+]
+
+
 ########### WorkSpaces ###########
 #### WorkSpaces ####
 # The Names of Applications after the Layout is to Move the Application to the Workspace.
@@ -253,65 +262,62 @@ def init_widgets_list():
               ]
     return widgets_list
 
+#### Setting up Bar for Multiple Monitors ####
+## Variable ##
 widgets_list = init_widgets_list()
-
-
+## Screens ##
+# Screen 1
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
     return widgets_screen1
-
+# Screen 2
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
     return widgets_screen2
-
+# Screen 3
+def init_widgets_screen3():
+    widgets_screen3 = init_widgets_list()
+    return widgets_screen3
+## Making Bar Appear ##
+# Screen 1
 widgets_screen1 = init_widgets_screen1()
+# Screen 2
 widgets_screen2 = init_widgets_screen2()
-
-
+# Screen 3
+widgets_screen3 = init_widgets_screen3()
+## Size of Bar on Different Screens ##
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26))]
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen3(), size=26))]
 screens = init_screens()
 
 
-# MOUSE CONFIGURATION
-mouse = [
-    Drag([super], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([super], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size())
-]
-
-dgroups_key_binder = None
-dgroups_app_rules = []
-
-main = None
-
+########### Startup ###########
+#### AutoStart Script ####
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
-
+#### Set Cursor ####
 @hook.subscribe.startup
 def start_always():
-    # Set the cursor to something sane in X
     subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
 
+
+########### Floating Windows ###########
+#### Variable ####
 @hook.subscribe.client_new
 def set_floating(window):
     if (window.window.get_wm_transient_for()
             or window.window.get_wm_type() in floating_types):
         window.floating = True
 
+#### Types ####
 floating_types = ["notification", "toolbar", "splash", "dialog"]
 
-
-follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = False
+#### Applications ####
 floating_layout = layout.Floating(float_rules=[
-    {'wmclass': 'Arcolinux-welcome-app.py'},
-    {'wmclass': 'Arcolinux-tweak-tool.py'},
     {'wmclass': 'confirm'},
     {'wmclass': 'dialog'},
     {'wmclass': 'download'},
@@ -326,17 +332,19 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'Arandr'},
     {'wmclass': 'feh'},
     {'wmclass': 'Galculator'},
-    {'wmclass': 'arcolinux-logout'},
-    {'wmclass': 'xfce4-terminal'},
     {'wmclass': 'Lxpolkit'},
+    {'wmclass': 'thunar'},
     {'wname': 'branchdialog'},
     {'wname': 'Open File'},
     {'wname': 'pinentry'},
     {'wmclass': 'ssh-askpass'},
 
 ],  fullscreen_border_width = 0, border_width = 0)
-auto_fullscreen = True
 
-focus_on_window_activation = "focus" # or smart
+focus_on_window_activation = "focus"
 
 wmname = "LG3D"
+main = None
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
