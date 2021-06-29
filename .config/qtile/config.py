@@ -29,6 +29,7 @@ taskmanager = "alacritty -e'htop'"                               # Task Manager
 terminal    = "alacritty"                                        # Terminal
 chat        = "discord"                                          # Chat Application
 virtual     = "virt-manager"                                     # Virtualization Software
+config      = "emacs '~/.config/qtile/config.py'"                # Qtile Config
 
 
 ########### Key Bindings ###########
@@ -103,7 +104,9 @@ Key([ctrl, "shift"], "Escape", lazy.spawn(taskmanager)),
 # Virtualization Software
 Key([alt, "control"], "v", lazy.spawn(virtual)),
 # ScreenShots
-Key([super], "Print", lazy.spawn("scrot 'Screenshot-%Y-%m-%d-%s.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'"))]
+    Key([super], "Print", lazy.spawn("scrot 'Screenshot-%Y-%m-%d-%s.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'")),
+# Config
+Key([alt, "control"], "h", lazy.spawn(config))]
 
 
 ########### Mouse Bindings ###########
