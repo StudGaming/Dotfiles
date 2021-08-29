@@ -1,5 +1,5 @@
 Hello, This is my gitlab for all of my dotfiles.
-if you are interested in using them you can go ahead and clone them using this command: "git clone https://gitlab.com/StudGaming/dotfiles"
+if you are interested in using them you can go ahead and clone them using this command: "git clone https://github.com/StudGaming/dotfiles"
 
 Here is a small explanation on how to set up the file that you cloned: 
 
