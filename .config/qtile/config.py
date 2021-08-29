@@ -20,7 +20,7 @@ ctrl        = "control"
 home        = os.path.expanduser('~')
 
 #### Applications ####
-browser     = "brave"                                            # Browser
+browser     = "firefox"                                          # Browser
 code        = "emacs"                                            # Text Editing
 files       = "thunar"                                           # File Manager
 logout      = "arcolinux-logout"                                 # Logout Tool
@@ -151,7 +151,7 @@ layouts = [
 colors1 = [["#282828", "#282828"],                         # BackGround Color
            ["#4e8aa0", "#4e8aa0"],                         # Workspaces with Open Applications
            ["#e78a4e", "#e78a4e"],                         # Workspaces with no Open Applictaions
-       ["#ffffff15", "#ffffff15"],                         # Highlight Current Workspace
+           ["#3d3f4b", "#3d3f4b"],                         # Highlight Current Workspace
            ["#ea6962", "#ea6962"]]                         # Line Color
 ## Colors for the Widgets ##
 colors2 = [["#282828", "#282828"],                         # BackGround Color
