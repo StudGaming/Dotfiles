@@ -123,9 +123,9 @@ mouse = [
 # The Names of Applications after the Layout is to Move the Application to the Workspace.
 group_names = [("Web", {'layout': 'max', 'matches':[Match(wm_class=["Brave-browser", "firefox"])]}),
                ("Dev", {'layout': 'max', 'matches':[Match(wm_class=["Emacs"])]}),
-               ("Sys", {'layout': 'monadtall'}),
+               ("Sys", {'layout': 'monadtall', 'matches':[Match(wm_class=["Alacritty"])]}),
                ("Chat", {'layout': 'max', 'matches':[Match(wm_class=["discord"])]}),
-               ("Vbox", {'layout': 'max', 'matches':[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine", "Virt-manager"])]}),
+               ("Vbox", {'layout': 'max', 'matches':[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine", "Virt-manager", "Vmware"])]}),
                ("Music", {'layout': 'max'}),
                ("Video", {'layout': 'max', 'matches':[Match(wm_class=["kdenlive"])]}),
                ("Misc", {'layout': 'monadtall'})]
@@ -135,7 +135,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 #### To switch WorkSpaces ####
     keys.append(Key([super], str(i), lazy.group[name].toscreen()))
-    keys.append(Key([super, "shift"], str(i), lazy.window.togroup(name)))
+    keys.append(Key([super, "shift"], str(i), lazy.window.togroup(name), lazy.group[name].toscreen()))
 
 
 ########### layouts ###########
