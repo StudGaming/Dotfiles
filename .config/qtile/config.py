@@ -76,7 +76,7 @@ Key([super, "shift"], "t", lazy.window.toggle_floating()),
 ## Exiting and Restarting ##
 # Retart Qtile
 Key([super, "shift"], "r", lazy.restart()),
-# Logout of Qtile
+# Quit Qtile
 Key([super, "shift"], "q", lazy.shutdown()),
 # Closing Applications
 Key([super, "shift"], "c", lazy.window.kill()),
