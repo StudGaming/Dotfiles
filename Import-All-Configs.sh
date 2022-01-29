@@ -4,7 +4,7 @@ mkdir backups
 mv .config/alacritty backups
 mv .config/qtile backups
 mv .config/nvim backups
-mc .config/paru backups
+mv .config/paru backups
 mv .config/rofi backups
 mv .config/starship.toml backups
 mv .config/volumeicon backups
