@@ -1,6 +1,1 @@
-/** Basic config file **/
-
-configuration {
-  show-icons:         true;
-  icon-theme:         "Papirus";
-}
+rofi.theme: ~/.config/rofi/themes/dt-dmenu.rasi
