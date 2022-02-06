@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-python/python-syntax'
     Plug 'ap/vim-css-color'
     Plug 'junegunn/vim-emoji'
-    Plug 'gruvbox-community/gruvbox'
+    Plug 'dracula/vim',{'as': 'dracula'}
 call plug#end()
 filetype plugin indent on
 
@@ -27,7 +27,7 @@ set expandtab
 set smarttab
 set shiftwidth=4
 set tabstop=4
-colorscheme gruvbox
+colorscheme dracula
 
 
 """"""""""" Status Bar """""""""""
