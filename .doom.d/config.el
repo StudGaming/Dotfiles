@@ -4,7 +4,7 @@
 
 
 ;;;;;;;;;;; Theme ;;;;;;;;;;;
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-dracula)
 
 
 ;;;;;;;;;;; Prevents Emacs from Asking to Quit or Not ;;;;;;;;;;;
