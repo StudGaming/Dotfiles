@@ -12,8 +12,6 @@ mv .doom.d/ backups
 mv .vim/ backups
 mv .vimrc backups
 mv .zshrc backups
-mv .icons/ backups
-mv .themes/ backups
 
 
 ########### CLoning the Directory ###########
@@ -39,8 +37,6 @@ mkdir -p .config/paru/
 mkdir -p .config/rofi/
 mkdir -p .config/volumeicon/
 mkdir -p .doom.d/
-mkdir -p .icons/
-mkdir -p .themes/
 
 
 ########### Moving Files ###########
@@ -53,8 +49,6 @@ mv dotfiles/.config/paru/paru.conf .config/paru/
 mv dotfiles/.config/starship.toml .config/
 mv dotfiles/.config/volumeicon/volumeicon .config/volumeicon/
 mv dotfiles/.doom.d/* .doom.d/
-mv dotfiles/.icons/* .icons/
-mv dotfiles/.themes/* .themes/
 mv dotfiles/.vimrc .
 mv dotfiles/.zshrc .
 
